@@ -20,7 +20,11 @@ class TestController extends AbstractController
         // return $this->render('test/index.html.twig', [
         //     'controller_name' => 'TestController',
         // ]);
-        $response = new Response('Bienvenue dans Symfony');
+        $response = new Response();
+        $response->setContent('Bienvenue dans Symfony');
+        $response->headers->set('Content-Type', 'text/plain');
+        $response->setStatusCode(Response::HTTP_NOT_FOUND);
+        $response->setCharset('ISO-8859-1');
         return $response;
     }
 }
