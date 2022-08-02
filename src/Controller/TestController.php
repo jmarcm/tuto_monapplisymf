@@ -47,4 +47,13 @@ class TestController extends AbstractController
 
         return new Response("$affiche");
     }
+
+
+    /**
+     * @Route("/hello/{nom}/{prenom}", name="hello")
+     */
+    public function hello(Request $request, $nom, $prenom='')
+    {
+        return new Response("Salut $prenom $nom !");
+    }
 }
