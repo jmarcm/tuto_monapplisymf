@@ -19,7 +19,9 @@ class TestController extends AbstractController
 
         // session_start()
         $session = $request->getSession();
-        $session->set('nom_user', 'jmarcm');
+
+        $session->getFlashBag()->add('info', 'Message informatif');
+        $session->getFlashBag()->add('info', 'Message complément');
         
         $url = $this->generateUrl('redirection');
         return $this->redirect($url);
@@ -35,9 +37,14 @@ class TestController extends AbstractController
         // récupération de la session
         $session = $request->getSession();
 
-        // récupération du nom de l'utilisateur
-        $nom_user = $session->get('nom_user');
+        // récupération des flashbags
+        $info = $session->getFlashBag()->get('info');
+        $affiche = '';
 
-        return new Response("Ici redirection ; variable de session : $nom_user");
+        foreach ($info as $message) {
+            $affiche .= $message . '<br/>';
+        }
+
+        return new Response("$affiche");
     }
 }
