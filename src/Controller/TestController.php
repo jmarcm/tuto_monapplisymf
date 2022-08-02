@@ -16,9 +16,11 @@ class TestController extends AbstractController
     {
 
         // L'objet Request est instancié automatiquement
-        echo $request->getPathInfo();
-        return $this->render('test/index.html.twig', [
-            'controller_name' => 'TestController',
-        ]);
+        echo $request->query->get('info') . '<br/>';
+        // return $this->render('test/index.html.twig', [
+        //     'controller_name' => 'TestController',
+        // ]);
+        $response = new Response('Bienvenue dans Symfony');
+        return $response;
     }
 }
