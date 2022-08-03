@@ -50,7 +50,7 @@ class TestController extends AbstractController
 
 
     /**
-     * @Route("/hello/{age}/{nom}/{prenom}", name="hello")
+     * @Route("/hello/{age}/{nom}/{prenom}", name="hello", , requirements={"nom"=#[a-z]{2,50}"})
      */
     public function hello(Request $request, int $age, $nom, $prenom='')
     {
