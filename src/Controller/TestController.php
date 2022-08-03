@@ -9,20 +9,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TestController extends AbstractController
-{
+class TestController extends AbstractController {
     /**
      * @Route("/test", name="app_test")
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
 
         // session_start()
         $session = $request->getSession();
 
         $session->getFlashBag()->add('info', 'Message informatif');
         $session->getFlashBag()->add('info', 'Message complément');
-        
+
         $url = $this->generateUrl('redirection');
         return $this->redirect($url);
     }
@@ -31,8 +29,7 @@ class TestController extends AbstractController
     /**
      * @Route("/redirection", name="redirection")
      */
-    public function redirection(Request $request): Response
-    {
+    public function redirection(Request $request): Response {
 
         // récupération de la session
         $session = $request->getSession();
@@ -50,10 +47,10 @@ class TestController extends AbstractController
 
 
     /**
-     * @Route("/hello/{age}/{nom}/{prenom}", name="hello", , requirements={"nom"=#[a-z]{2,50}"})
+     * @Route("/hello/{age}/{nom}/{prenom}", name="hello", requirements={"nom"=#[a-z]{2,50}"})
      */
-    public function hello(Request $request, int $age, $nom, $prenom='')
-    {
-        return new Response("Salut $prenom $nom vous avez $age !");
+    public function hello(Request $request, int $age, $nom, $prenom = '') {
+        // return new Response("Salut $prenom $nom vous avez $age !");
+        return $this->render('test/hello.html.twig', ['nom' => $nom, 'prenom' => $prenom, 'age' => $age]);
     }
 }

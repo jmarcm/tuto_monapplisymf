@@ -1,0 +1,8 @@
+<h2>Bienvenue à {{ prenom }} {{ nom }}</h2>
+
+{# Test de l'age du participant #}
+{% if age > 60 %}
+<h3>Vous êtes un senior</h3>
+{% else %}
+<h3>Vous êtes un junior</h3>
+{% endif %}
