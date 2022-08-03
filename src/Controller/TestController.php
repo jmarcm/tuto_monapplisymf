@@ -50,10 +50,10 @@ class TestController extends AbstractController
 
 
     /**
-     * @Route("/hello/{nom}/{prenom}", name="hello")
+     * @Route("/hello/{age}/{nom}/{prenom}", name="hello")
      */
-    public function hello(Request $request, $nom, $prenom='')
+    public function hello(Request $request, int $age, $nom, $prenom='')
     {
-        return new Response("Salut $prenom $nom !");
+        return new Response("Salut $prenom $nom vous avez $age !");
     }
 }
