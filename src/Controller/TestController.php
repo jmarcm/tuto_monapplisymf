@@ -26,7 +26,11 @@ class TestController extends AbstractController {
             'nom' => $nom,
             'prenom' => $prenom,
             'age' => $age,
-            'messageHtml' => '<h3>Je vais tester le filtre raw</h3>'
+            'messageHtml' => '<h3>Je vais tester le filtre raw</h3>',
+            'monTableau' => [
+                'profession' => 'formateur',
+                'spécialité' => 'Symfony'
+            ]
         ]);
     }
 }
