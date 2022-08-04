@@ -1,6 +1,7 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Page de bienvenue{% endblock %}
+{# On peut préserver les éléments contenus dans le layout principal #}
+{% block title %}{{ parent() }}Page de bienvenue{% endblock %}
 
 {% block body %}
 	<h2>Bienvenue à {{ prenom }} {{ nom }}</h2>
