@@ -6,6 +6,9 @@
 
 {% block body %}
     <h2>Page de test</h2>
-    test date: {{ 1585827000 | date('d-m-Y H:i:s') }}
-    variable de session auteur : {{ app.session.get('auteur') }}
+    <p>test date: {{ 1585827000 | date('d-m-Y H:i:s') }}</p>
+    <p>variable de session auteur : {{ app.session.get('auteur') }}</p>
+    <button>
+        <a href="{{ path('hello', {"nom": "Marc", "prenom": "Dominique", "age": 65}) }}">Vers Hello</a>
+    </button>
 {% endblock %}
