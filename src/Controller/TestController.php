@@ -16,11 +16,11 @@ class TestController extends AbstractController {
         // session_start()
         $session = $request->getSession();
 
-        $session->getFlashBag()->add('info', 'Message informatif');
-        $session->getFlashBag()->add('info', 'Message complément');
-
-        $url = $this->generateUrl('redirection');
-        return $this->redirect($url);
+        $session->getFlashBag()->add('message', 'Message informatif');
+        $session->getFlashBag()->add('message', 'Message complémentaire');
+        $session->set('statut', 'primary');
+        
+        return $this->render('test/test.html.twig');
     }
 
 
@@ -45,7 +45,7 @@ class TestController extends AbstractController {
 
 
     /**
-     * @Route("/hello/{age}/{nom}/{prenom}", name="hello", requirements={"nom"=#[a-z]{2,50}"})
+     * @Route("/hello/{age}/{nom}/{prenom}", name="hello", requirements={"nom"="[a-z]{2,50}"})
      */
     public function hello(Request $request, int $age, $nom, $prenom = '') {
         

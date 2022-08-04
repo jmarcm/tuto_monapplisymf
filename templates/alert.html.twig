@@ -1,0 +1,10 @@
+{# Ce template a pour but de gérer les alert (Bootstrap) #}
+
+<div class="d-flex flex-row justify-content-center m-5">
+
+    {% for message in app.session.flashbag.get('message') %}
+        <span class="alert alert-{{ app.session.get('statut') }}">
+            {{ message }}
+        </span>
+    {% endfor %}
+</div>

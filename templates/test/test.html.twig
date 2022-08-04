@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ parent() }} Page de bienvenue
+{% endblock %}
+
+{% block body %}
+    <h2>Page de test</h2>
+    test date: {{ 1585827000 | date('d-m-Y H:i:s') }}
+    variable de session auteur : {{ app.session.get('auteur') }}
+{% endblock %}
