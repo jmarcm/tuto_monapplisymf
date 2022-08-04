@@ -2,11 +2,9 @@
 
 namespace App\Controller;
 
-use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TestController extends AbstractController {
@@ -50,7 +48,8 @@ class TestController extends AbstractController {
      * @Route("/hello/{age}/{nom}/{prenom}", name="hello", requirements={"nom"=#[a-z]{2,50}"})
      */
     public function hello(Request $request, int $age, $nom, $prenom = '') {
-        // return new Response("Salut $prenom $nom vous avez $age !");
+        
+        echo $_ENV['APP_AUTHOR'];
         return $this->render('test/hello.html.twig', ['nom' => $nom, 'prenom' => $prenom, 'age' => $age]);
     }
 }
