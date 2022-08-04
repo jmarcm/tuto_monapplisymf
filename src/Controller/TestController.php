@@ -49,7 +49,6 @@ class TestController extends AbstractController {
      */
     public function hello(Request $request, int $age, $nom, $prenom = '') {
         
-        echo $_ENV['APP_AUTHOR'];
         return $this->render('test/hello.html.twig', ['nom' => $nom, 'prenom' => $prenom, 'age' => $age]);
     }
 }
