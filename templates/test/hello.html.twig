@@ -12,6 +12,8 @@
 	{% else %}
 		<h3>Vous êtes un junior</h3>
 	{% endif %}
+
+	{{ messageHtml | raw }}
     
     <button>
         <a href="{{ path('test') }}" title="Vers test">Vers Test</a>
