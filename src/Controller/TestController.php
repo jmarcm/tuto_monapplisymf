@@ -13,6 +13,8 @@ class TestController extends AbstractController {
      */
     public function index(Request $request) {
 
+        $session = $request->getSession();
+        $auteur = $session->set('auteur', 'JMarc');
         return $this->render('test/test.html.twig');
     }
 
