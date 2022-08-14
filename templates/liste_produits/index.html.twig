@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block body %}
+
+<table class="table" style="margin:auto;">
+    <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Disponibilité</th>
+        </tr>
+    </thead/>
+
+    {% set taille = '80px' %}
+
+    {% for produit in listeproduits %}
+        <tr>
+            <td>{{ produit.nom }}</td>
+            <td>{{ produit.prix }}</td>
+            <td>{{ produit.quantite }}</td>
+            <td>
+                {% if produit.rupture %}Rupture de stock{% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
