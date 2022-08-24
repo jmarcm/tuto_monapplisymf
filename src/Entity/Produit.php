@@ -37,6 +37,11 @@ class Produit
      */
     private $rupture;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $lienImage;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Produit
     public function setRupture(bool $rupture): self
     {
         $this->rupture = $rupture;
+
+        return $this;
+    }
+
+    public function getLienImage(): ?string
+    {
+        return $this->lienImage;
+    }
+
+    public function setLienImage(?string $lienImage): self
+    {
+        $this->lienImage = $lienImage;
 
         return $this;
     }
