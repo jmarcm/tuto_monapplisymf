@@ -24,7 +24,11 @@ class AdminController extends AbstractController
             ->add('date', DateType::class)
             ->add('save', SubmitType::class, ['label' => 'Insérer un produit'])
             ->getForm();
-            
+
+        if ($request->isMethod('post')) {
+            return new JsonResponse($request->request->all());
+        }
+
         return $this->render('admin/create.html.twig', ['my_form' => $form->createView()]);
     }
 
