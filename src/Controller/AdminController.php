@@ -3,6 +3,10 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,7 +18,14 @@ class AdminController extends AbstractController
      */
     public function insert(Request $request)
     {
-        return $this->render('admin/create.html.twig');
+
+        $form = $this->createFormBuilder()
+            ->add('nom', TextType::class)
+            ->add('date', DateType::class)
+            ->add('save', SubmitType::class, ['label' => 'Insérer un produit'])
+            ->getForm();
+            
+        return $this->render('admin/create.html.twig', ['my_form' => $form->createView()]);
     }
 
     /**
