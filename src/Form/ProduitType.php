@@ -20,7 +20,7 @@ class ProduitType extends AbstractType
             ->add('prix', NumberType::class, ['label' => 'Prix :'])
             ->add('quantite', NumberType::class, ['label' => 'Quantité :'])
             ->add('rupture', CheckboxType::class, ['label' => 'Rupture de stock', 'required' => false])
-            ->add('lienImage', FileType::class, ['label' => 'Image :', 'required' => false, 'data_class' => null, 'empty_data', 'Aucune image'])
+            ->add('lienImage', FileType::class, ['label' => 'Image :', 'required' => false, 'data_class' => null, 'empty_data' => 'Aucune image'])
         ;
     }
 
