@@ -11,12 +11,19 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+use Doctrine\ORM\EntityManagerInterface;
+
 use App\DataFixtures\ProduitFixtures;
 
 
 class AddImageProduitFixtures extends Fixture implements FixtureInterface, ContainerAwareInterface, DependentFixtureInterface
 {
     private $container;
+
+    function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
 
     public function setContainer(ContainerInterface $container = null)
     {
@@ -29,30 +36,30 @@ class AddImageProduitFixtures extends Fixture implements FixtureInterface, Conta
         // $product = new Product();
         // $manager->persist($product);
 
-        $em = $this->container->get('doctrine.orm.entity_manager');
-        $repProduit = $em->getRepository(Produit::class);
+        // $em = $this->container->get('doctrine.orm.entity_manager');
+        $repProduit = $this->em->getRepository(Produit::class);
 
         $listeProduits = $repProduit->findAll();
 
         foreach ($listeProduits as $monProduit) {
-
+            var_dump($monProduit->getNom());
             switch($monProduit->getNom()) {
-                case 'imprimante':
+                case 'Imprimantes':
                     $monProduit->setLienImage("imprimante.jpg");
                     break;
-                case 'cartouches encre':
+                case 'Cartouches d\'encre':
                     $monProduit->setLienImage("cartouches.jpg");
                     break;
-                case 'ordinateurs':
+                case 'Ordinateurs':
                     $monProduit->setLienImage("ordinateur.jpg");
                     break;
-                case 'écrans':
+                case 'Ecrans':
                     $monProduit->setLienImage("ecran.jpg");
                     break;
-                case 'claviers':
+                case 'Claviers':
                     $monProduit->setLienImage("clavier.jpg");
                     break;
-                case 'souris':
+                case 'Souris':
                     $monProduit->setLienImage("souris.jpg");
                     break;
             }
