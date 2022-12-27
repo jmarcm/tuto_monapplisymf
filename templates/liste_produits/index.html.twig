@@ -4,27 +4,29 @@
 
 {% block body %}
 
-<table class="table" style="margin:auto;">
-    <thead>
-        <tr>
-            <th scope="col">Nom</th>
-            <th scope="col">Prix</th>
-            <th scope="col">Quantité</th>
-            <th scope="col">Disponibilité</th>
-        </tr>
-    </thead/>
+    <div class="d-flex flex-row justify-content-around flex-wrap">
 
-    {% set taille = '80px' %}
+        {% for produit in listeproduits %}
+            <div class="card" style="width:18rem;">
+                <img class=",card-img-top" src="{{ asset('img/'~produit.lienImage) }}" height="200px" alt="image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ produit.nom }}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Prix : {{ produit.prix }} Euros</li>
+                        <li class="list-group-item">
+                            {% if produit.rupture %}
+                                <strong>En rupture de stock</strong>
+                            {% else %}
+                                Quantité : {{ produit.quantite }}
+                            {% endif %}
+                        </li>
+                    </ul>
+                {# </div>
+                <div class="card-body"> #}
+                    <a href="#" class="btn btn-primary">Ajouter au panier</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 
-    {% for produit in listeproduits %}
-        <tr>
-            <td>{{ produit.nom }}</td>
-            <td>{{ produit.prix }}</td>
-            <td>{{ produit.quantite }}</td>
-            <td>
-                {% if produit.rupture %}Rupture de stock{% endif %}
-            </td>
-        </tr>
-    {% endfor %}
-</table>
 {% endblock %}
