@@ -27,7 +27,7 @@ class ListeProduitsController extends AbstractController
 
         // On accède aux produits via le Respository
         $produitsRepository = $this->em->getRepository(Produit::class);
-        $listeProduits = $produitsRepository->findAll();
+        $listeProduits = $produitsRepository->orderingProduit();
 
         return $this->render('liste_produits/index.html.twig', [
             'listeproduits' => $listeProduits

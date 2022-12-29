@@ -39,6 +39,15 @@ class ProduitRepository extends ServiceEntityRepository
         }
     }
 
+    public function orderingProduit() {
+
+        $liste_produits = $this->getEntityManager()
+            ->createQuery("SELECT p FROM App\Entity\Produit p ORDER BY p.nom")
+            ->getResult();
+
+        return $liste_produits;
+    }
+
 //    /**
 //     * @return Produit[] Returns an array of Produit objects
 //     */
