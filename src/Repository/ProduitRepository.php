@@ -39,6 +39,13 @@ class ProduitRepository extends ServiceEntityRepository
         }
     }
 
+
+    /**
+     * Récupère la liste des produits classé par nom croissant
+     * utilise DQL
+     * 
+     * @return array
+     */
     public function orderingProduit() {
 
         $liste_produits = $this->getEntityManager()
@@ -46,6 +53,23 @@ class ProduitRepository extends ServiceEntityRepository
             ->getResult();
 
         return $liste_produits;
+    }
+
+
+    /**
+     * Retourn le dernier produit enregistré dans la BDD
+     * utilise le QueryBuilder
+     *
+     * @return array
+     */
+    public function getLastProduit() {
+        $lastProduit = $this->createQueryBuilder('p')
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return $lastProduit;
     }
 
 //    /**

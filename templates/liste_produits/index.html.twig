@@ -4,9 +4,13 @@
 
 {% block body %}
 
+    <div class="alert alert-primary">
+        Réduction de 20% sur le produit : {{ lastProduit.nom }}
+    </div>
+
     <div class="d-flex flex-row justify-content-around flex-wrap">
 
-        {% for produit in listeproduits %}
+        {% for produit in listeProduits %}
             <div class="card" style="width:18rem;">
                 <img class=",card-img-top" src="{{ asset('img/'~produit.lienImage) }}" height="200px" alt="image">
                 <div class="card-body">
