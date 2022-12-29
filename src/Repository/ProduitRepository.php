@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Data\ListeProduits;
 use App\Entity\Produit;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -42,17 +43,21 @@ class ProduitRepository extends ServiceEntityRepository
 
     /**
      * Récupère la liste des produits classé par nom croissant
-     * utilise DQL
+     * utilise SQL
      * 
      * @return array
      */
     public function orderingProduit() {
 
-        $liste_produits = $this->getEntityManager()
-            ->createQuery("SELECT p FROM App\Entity\Produit p ORDER BY p.nom")
-            ->getResult();
+        $conn = $this->getEntityManager()->getConnection();
 
-        return $liste_produits;
+        $sql = "SELECT * FROM produit ORDER BY id DESC";
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        $listeProduits = $resultSet->fetchAllAssociative();
+
+        return $listeProduits;
     }
 
 
