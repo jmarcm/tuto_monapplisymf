@@ -42,6 +42,13 @@ class Produit
      */
     private $lienImage;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Reference", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $reference;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +110,18 @@ class Produit
     public function setLienImage(?string $lienImage): self
     {
         $this->lienImage = $lienImage;
+
+        return $this;
+    }
+
+    public function getReference(): ?Reference
+    {
+        return $this->reference;
+    }
+
+    public function setReference(?Reference $reference): self
+    {
+        $this->reference = $reference;
 
         return $this;
     }
