@@ -28,7 +28,7 @@ class ListeProduitsController extends AbstractController
         // On accède aux produits via le Respository
         $produitsRepository = $this->em->getRepository(Produit::class);
 
-        $listeProduits = $produitsRepository->orderingProduit();
+        $listeProduits = $produitsRepository->findAll();
 
         $lastProduit = $produitsRepository->getLastProduit();
 
