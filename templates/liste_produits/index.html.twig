@@ -16,12 +16,26 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ produit.nom }}</h5>
                     <ul class="list-group list-group-flush">
+
                         <li class="list-group-item">
                             {% if produit.reference is not null %}
                                 Référence : {{ produit.reference.numero }}
                             {% endif %}
                         </li>
+
+                        <li class="list-group-item">
+                            Distributeur(s):
+                            {% if produit.distributeurs is not empty %}
+                                {% for distributeur in produit.distributeurs %}
+                                    {{ distributeur.nom }}
+                                {% endfor %}
+                            {% else %}
+                                Pas de distributeur joint
+                            {% endif %}
+                        </li>
+
                         <li class="list-group-item">Prix : {{ produit.prix }} Euros</li>
+
                         <li class="list-group-item">
                             {% if produit.rupture %}
                                 <strong>En rupture de stock</strong>
