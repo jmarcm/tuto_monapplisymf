@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -47,6 +49,18 @@ class Produit
      * @ORM\JoinColumn(nullable=true)
      */
     private $reference;
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Distributeur", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $distributeurs;
+
+    public function __construct()
+    {
+        $this->distributeurs = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -122,6 +136,30 @@ class Produit
     public function setReference(?Reference $reference): self
     {
         $this->reference = $reference;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Distributeur>
+     */
+    public function getDistributeurs(): Collection
+    {
+        return $this->distributeurs;
+    }
+
+    public function addDistributeur(Distributeur $distributeur): self
+    {
+        if (!$this->distributeurs->contains($distributeur)) {
+            $this->distributeurs[] = $distributeur;
+        }
+
+        return $this;
+    }
+
+    public function removeDistributeur(Distributeur $distributeur): self
+    {
+        $this->distributeurs->removeElement($distributeur);
 
         return $this;
     }
