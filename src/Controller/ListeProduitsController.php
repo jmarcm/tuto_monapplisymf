@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Distributeur;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,5 +37,20 @@ class ListeProduitsController extends AbstractController
             'listeProduits' => $listeProduits,
             'lastProduit' => $lastProduit
         ]);
+    }
+
+
+    /**
+     * @Route("distributeurs", name="distributeurs")
+     */
+    public function listeDistributeurs() {
+
+        $repDistributeurs = $this->em->getRepository(Distributeur::class);
+
+        $distributeurs = $repDistributeurs->findAll();
+
+        return $this->render('liste_produits/distributeurs.html.twig',
+            ['distributeurs' => $distributeurs]
+        );
     }
 }

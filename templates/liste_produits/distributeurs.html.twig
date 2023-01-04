@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des distributeurs{% endblock %}
+
+{% block body %}
+
+    <table class="table mx-auto">
+        <tr>Titre</tr>
+        {% for distributeur in distributeurs %}
+            <tr>
+                <td>{{ distributeur.nom }}</td>
+                <td>
+                    <table>
+                        {% if distributeur.produit is not empty %}
+
+                            {% for produit in distributeur.produit %}
+                                <tr>
+                                    <td>{{ produit.nom }}</td>
+                                    <td align="center">{{ produit.reference.numero }}</td>
+                                </tr>
+                            {% endfor %}
+                            
+                        {% endif %}
+                    </table>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

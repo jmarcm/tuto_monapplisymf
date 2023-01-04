@@ -152,6 +152,8 @@ class Produit
     {
         if (!$this->distributeurs->contains($distributeur)) {
             $this->distributeurs[] = $distributeur;
+            // prise en compte de la relation inverse
+            $distributeur->addProduit($this);
         }
 
         return $this;
