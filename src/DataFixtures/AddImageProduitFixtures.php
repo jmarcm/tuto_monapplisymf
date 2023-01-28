@@ -19,6 +19,7 @@ use App\DataFixtures\ProduitFixtures;
 class AddImageProduitFixtures extends Fixture implements FixtureInterface, ContainerAwareInterface, DependentFixtureInterface
 {
     private $container;
+    private $em;
 
     function __construct(EntityManagerInterface $em)
     {
