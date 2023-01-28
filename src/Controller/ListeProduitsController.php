@@ -14,6 +14,8 @@ use Doctrine\Persistence\ManagerRegistry;
 class ListeProduitsController extends AbstractController
 {
 
+    private $em;
+
     function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
