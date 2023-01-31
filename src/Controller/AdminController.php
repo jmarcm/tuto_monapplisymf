@@ -16,13 +16,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 
-/**
- * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN')")
- */
 class AdminController extends AbstractController
 {
     /**
      * @Route("/insert", name="insert")
+     * 
+     *
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function insert(Request $request)
     {
@@ -48,7 +48,9 @@ class AdminController extends AbstractController
      */
     public function update(Request $request, $id)
     {
-        return $this->render('admin/create.html.twig');
+        return $this->render('admin/update_produit.html.twig', [
+            'id' => $id
+        ]);
     }
 
     /**
