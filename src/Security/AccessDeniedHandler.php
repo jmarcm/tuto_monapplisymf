@@ -10,6 +10,12 @@ class AccessDeniedHandler extends AbstractController implements AccessDeniedHand
 {
     public function handle(Request $request, AccessDeniedException $accessDeniedException)
     {
+        
+        $session = $request->getSession();
+
+        $session->getFlashBag()->add('message', "Vous n'avez pas les droits suffisants pour accéder à cette page");
+        $session->set('statut', 'danger');
+
         return $this->redirect($this->generateUrl('app_login'));
     }
 }
