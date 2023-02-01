@@ -4,6 +4,12 @@
 
 {% block body %}
 
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <a class="btn btn-info mb-2" href="{{ path('insert') }}">
+            Insertion d'un nouveau produit
+        </a>
+    {% endif %}
+
     <div class="alert alert-primary">
         Réduction de 20% sur le produit : {{ lastProduit.nom }}
     </div>
@@ -50,6 +56,6 @@
                 </div>
             </div>
         {% endfor %}
-    </div>
+    </div>   
 
 {% endblock %}
