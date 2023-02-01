@@ -37,7 +37,7 @@ class TestController extends AbstractController {
     }
 
     /**
-     * @Route("/langue/{_locale}", name="langue",requirements={"_locale"="en|fr|de"})
+     * @Route("/langue/{_locale}", name="langue", requirements={"_locale"="en|fr|de"})
      */
     // requirements est conseillé pour contrôler les langues autorisées dans l'application
     public function langue(Request $request)
@@ -45,6 +45,18 @@ class TestController extends AbstractController {
         // récupère la locale du projet
         $locale = $request->getLocale();
 
+        return new Response("Langue parlée : $locale");
+    }
+
+
+    /**
+     * @Route("/test-langue", name="test_langue")
+     */
+    public function test_langue(Request $request)
+    {
+        $request->setLocale('de');
+        $locale = $request->getLocale();
+        
         return new Response("Langue parlée : $locale");
     }
 }
