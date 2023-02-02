@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class TestController extends AbstractController {
     /**
@@ -40,12 +41,11 @@ class TestController extends AbstractController {
      * @Route("/langue/{_locale}", name="langue", requirements={"_locale"="en|fr|de"})
      */
     // requirements est conseillé pour contrôler les langues autorisées dans l'application
-    public function langue(Request $request)
+    public function langue(Request $request, TranslatorInterface $translator)
     {
-        // récupère la locale du projet
-        $locale = $request->getLocale();
+        $texteTraduit = $translator->trans('Welcome to Symfony');
 
-        return new Response("Langue parlée : $locale");
+        return new Response($texteTraduit);
     }
 
 
