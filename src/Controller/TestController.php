@@ -43,9 +43,7 @@ class TestController extends AbstractController {
     // requirements est conseillé pour contrôler les langues autorisées dans l'application
     public function langue(Request $request, TranslatorInterface $translator)
     {
-        $texteTraduit = $translator->trans('Welcome to Symfony');
-
-        return new Response($texteTraduit);
+        return $this->render('test/index.html.twig');
     }
 
 
