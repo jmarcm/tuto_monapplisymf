@@ -1,1 +1,2 @@
 Welcome to Symfony: Bienvenue sur Symfony
+say_hello: Bonjour %name%
